@@ -1,0 +1,136 @@
+@import 'tailwindcss';
+
+:root {
+  font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  color: #17323c;
+  background: #f5f7f5;
+  font-synthesis: none;
+}
+body {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+.shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 36px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 0;
+  border-bottom: 1px solid #dce3df;
+}
+.brand {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.brand span {
+  font-size: 14px;
+  color: #64766d;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+nav {
+  display: flex;
+  gap: 28px;
+  font-size: 14px;
+}
+nav a.active {
+  color: #0f766e;
+}
+main {
+  min-height: 72vh;
+  padding: 62px 0;
+}
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #317d73;
+  margin: 0 0 20px;
+}
+h1 {
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.2;
+  letter-spacing: -1px;
+  font-weight: 700;
+  margin: 0 0 22px;
+}
+.intro {
+  color: #64766d;
+  max-width: 650px;
+  font-size: 16px;
+  line-height: 1.9;
+}
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 40px;
+}
+.card {
+  border: 1px solid #dce3df;
+  border-radius: 16px;
+  background: white;
+  padding: 28px;
+}
+h2 {
+  font-size: 21px;
+  font-weight: 600;
+  margin: 8px 0 14px;
+}
+.card p:not(.eyebrow),
+.notice p {
+  color: #64766d;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.notice {
+  margin-top: 32px;
+  padding: 26px 0;
+  border-top: 1px solid #dce3df;
+}
+.notice h2 {
+  font-size: 16px;
+}
+.notice p {
+  font-size: 14px;
+  margin: 8px 0;
+}
+footer {
+  border-top: 1px solid #dce3df;
+  padding: 24px 0;
+  font-size: 11px;
+  color: #64766d;
+  letter-spacing: 1px;
+}
+.editor {
+  margin-top: 32px;
+  border: 1px solid #dce3df;
+  border-radius: 12px;
+  overflow: hidden;
+}
+@media (max-width: 640px) {
+  .shell {
+    padding: 0 20px;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .brand span {
+    display: none;
+  }
+  main {
+    padding-top: 40px;
+  }
+}

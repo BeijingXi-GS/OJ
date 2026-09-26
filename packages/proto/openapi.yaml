@@ -1,0 +1,64 @@
+openapi: 3.0.3
+info:
+  title: OJ Foundation API
+  version: 0.1.0
+  description: Phase 0 bootstrap endpoints. No submission execution endpoints exist.
+servers:
+  - url: http://127.0.0.1:8080
+paths:
+  /healthz:
+    get:
+      operationId: health
+      responses:
+        '200':
+          description: Process is alive; does not imply dependencies are ready.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status: { type: string, enum: [ok] }
+  /readyz:
+    get:
+      operationId: readiness
+      responses:
+        '200':
+          description: Configured PostgreSQL connection responds.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status: { type: string, enum: [ready] }
+        '503':
+          description: PostgreSQL is unconfigured or unreachable.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, reason]
+                properties:
+                  status: { type: string, enum: [not_ready] }
+                  reason:
+                    {
+                      type: string,
+                      enum: [database_not_configured, database_unavailable],
+                    }
+  /api/v1/system:
+    get:
+      operationId: systemInfo
+      responses:
+        '200':
+          description: Foundation capabilities; not a project progress report.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [name, stage, judge_enabled, contract_version]
+                properties:
+                  name: { type: string }
+                  stage: { type: string, enum: [foundation] }
+                  judge_enabled: { type: boolean, enum: [false] }
+                  contract_version: { type: string }

@@ -1,0 +1,34 @@
+{
+  "name": "oj-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/web"
+  ],
+  "engines": {
+    "node": ">=22.19.0 <23 || >=24.0.0 <25"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "doctor": "node scripts/doctor.mjs",
+    "dev": "npm run dev --workspace @oj/web",
+    "api": "node scripts/go.mjs run ./apps/api",
+    "worker": "node scripts/go.mjs run ./services/judge-worker",
+    "build": "node scripts/go.mjs build ./... && npm run build --workspace @oj/web",
+    "test": "node scripts/go.mjs test ./...",
+    "lint": "node scripts/go.mjs vet ./... && npm run lint --workspace @oj/web",
+    "typecheck": "npm run typecheck --workspace @oj/web",
+    "format": "prettier --write . && node scripts/format-go.mjs --write",
+    "format:check": "prettier --check . && node scripts/format-go.mjs",
+    "check": "npm run format:check && npm run lint && npm test && npm run build",
+    "infra:config": "node scripts/compose.mjs config --quiet",
+    "infra:up": "node scripts/compose.mjs up -d --wait --wait-timeout 120",
+    "infra:down": "node scripts/compose.mjs down",
+    "infra:status": "node scripts/compose.mjs ps",
+    "sqlc": "node scripts/go.mjs run github.com/sqlc-dev/sqlc/cmd/sqlc@v1.30.0 generate",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "devDependencies": {
+    "prettier": "3.9.9"
+  }
+}

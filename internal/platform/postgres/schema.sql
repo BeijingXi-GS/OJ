@@ -1,0 +1,2 @@
+-- Bootstrap schema is intentionally empty.
+-- Business tables require the Phase 0 identity review and Phase 2 schema review.

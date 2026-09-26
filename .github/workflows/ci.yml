@@ -1,0 +1,34 @@
+name: foundation
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      GOCACHE: ${{ github.workspace }}/.local/go-build
+      GOMODCACHE: ${{ github.workspace }}/.local/go/pkg/mod
+      GOPATH: ${{ github.workspace }}/.local/go
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.19.0'
+          cache: npm
+      - run: npm run setup
+      - run: npm run check
+      - run: node scripts/go.mjs test -race ./...
+      - run: npm run smoke
+      - run: npm run sqlc
+      - run: git diff --exit-code -- internal/platform/dbgen
+      - run: npm run infra:config
+      - run: npm run infra:up
+      - run: node scripts/infra-smoke.mjs
+      - if: always()
+        run: npm run infra:down
