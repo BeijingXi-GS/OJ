@@ -28,6 +28,8 @@ jobs:
       - run: npm run sqlc
       - run: git diff --exit-code -- internal/platform/dbgen
       - run: npm run infra:config
+      - run: docker pull redis:7.4.5-alpine@sha256:bb186d083732f669da90be8b0f975a37812b15e913465bb14d845db72a4e3e08
+      - run: npm run infra:build-minio
       - run: npm run infra:up
       - run: node scripts/infra-smoke.mjs
       - if: always()

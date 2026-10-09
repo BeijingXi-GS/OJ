@@ -2,6 +2,8 @@
 
 日期：2026-09-26（Asia/Shanghai）。执行者：本次初始化 Agent。此记录为实际工程检查，**不是独立 Architect / Security Review**。
 
+此文件保留初始化时的历史证据，不覆盖后续状态。2026-10-01 最新运行 / 回归与失败证据见 [交接](../handoffs/2026-10-01-environment-review-handoff.md)，实际独立评审见 [正式报告](../reviews/2026-10-01-phase0-review.md)；实时进度以 [PROGRESS.md](../../PROGRESS.md) 为准。
+
 ## 验证基线
 
 - Windows amd64；Go 1.25.4；Node 22.19.0；npm 10.9.3；Git 2.51.0.windows.1。

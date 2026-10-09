@@ -1,6 +1,6 @@
 # Sandbox 安全基线
 
-状态：设计约束已整理，Linux 实现和 Security Review 未完成。
+状态：本文保留原 Phase 4 目标。2026-10-08 的当前实现盘点、恶意行为矩阵、差距与整改任务见 [恶意代码安全方案](MALICIOUS_CODE_SECURITY_PLAN.md)；已有 filejudge 容器实现和历史局部审阅，但完整生产安全及当前版本真实验收未完成。
 
 用户源码、编译输入、Checker 和 Interactor 都需要明确的信任边界。Phase 1 的本地 runner 只处理仓库维护者提供的可信 fixture，在专用 Linux 开发环境执行；在 Phase 4 安全门禁通过之前，不接受互联网来源任意代码。
 

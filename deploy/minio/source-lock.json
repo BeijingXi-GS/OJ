@@ -1,0 +1,7 @@
+{
+  "module": "github.com/minio/minio",
+  "commit": "7aac2a2c5b7c882e68c1ce017d8256be2feea27f",
+  "image": "oj/minio:source-7aac2a2c5b7c-linux-amd64",
+  "platform": "linux/amd64",
+  "runtimeBase": "redis:7.4.5-alpine@sha256:bb186d083732f669da90be8b0f975a37812b15e913465bb14d845db72a4e3e08"
+}

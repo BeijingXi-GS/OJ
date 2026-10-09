@@ -1,0 +1,32 @@
+{
+  "checker": "tokens-v1",
+  "wall_time_ms": 2000,
+  "memory_limit_bytes": 67108864,
+  "cases": [
+    {
+      "id": "sample",
+      "input": "sample.in",
+      "expected": "sample.out"
+    },
+    {
+      "id": "single",
+      "input": "single.in",
+      "expected": "single.out"
+    },
+    {
+      "id": "odd",
+      "input": "odd.in",
+      "expected": "odd.out"
+    },
+    {
+      "id": "not-palindrome",
+      "input": "not-palindrome.in",
+      "expected": "not-palindrome.out"
+    },
+    {
+      "id": "long-mismatch",
+      "input": "long-mismatch.in",
+      "expected": "long-mismatch.out"
+    }
+  ]
+}

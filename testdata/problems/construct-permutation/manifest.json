@@ -1,0 +1,14 @@
+{
+  "type": "batch",
+  "checker": "nonconsecutive-permutation-v1",
+  "wall_time_ms": 2000,
+  "memory_limit_bytes": 67108864,
+  "cases": [
+    { "id": "one", "input": "one.in" },
+    { "id": "two", "input": "two.in" },
+    { "id": "three", "input": "three.in" },
+    { "id": "four", "input": "four.in" },
+    { "id": "odd", "input": "odd.in" },
+    { "id": "maximum", "input": "maximum.in" }
+  ]
+}

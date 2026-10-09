@@ -20,7 +20,7 @@ flowchart LR
   JW --> OBJ[(S3 / MinIO)]
 ```
 
-上图是目标拓扑，不是当前已实现能力。当前只有 HTTP 基础接口、空闲 Worker 和类型草案。
+上图是目标拓扑，不是当前已实现能力。2026-10-08 当前本机 MVP 已有 React/Monaco、Go API、独立 compile-worker / filejudge 服务、文件题库和教师上传，支持标准/构造/特判/固定交互/双源码通信。API 转发独立服务；业务数据库、持久 Submission/JudgeRun、outbox/Redis恢复和真实身份仍待实现。旧 compile-only 与 filejudge 隔离强度不同，见[安全方案](../sandbox/MALICIOUS_CODE_SECURITY_PLAN.md)。这段现状补充不冻结上图的完整目标架构。
 
 ## 包依赖
 
@@ -50,4 +50,8 @@ Repository 接口围绕业务事务定义，例如 CreateSubmissionSnapshot / Co
 
 ## 当前非目标
 
-不实现认证、题库 CRUD、数据库业务迁移、提交执行、Queue 消费、Linux 隔离、分布式调度、Kubernetes 或生产可观测性。Phase 0 的真实 checks 见验证记录。下一阶段由 ROADMAP 和任务卡推进。
+本节原指 Phase 0 的范围。后续局部 MVP 已扩展题目上传与执行；完整业务迁移、认证、Queue 恢复、分布式调度、Kubernetes 和生产门禁仍未交付。当前工作内容以[实施工作包](../planning/2026-10-07-implementation-backlog.md)和 PROGRESS 为准；Phase 0 检查只证明当时范围。
+
+## 已审基础原则
+
+2026-10-01 仅 [foundation-invariants/1.0.0](FOUNDATION_INVARIANTS.md) 的七项基础原则已冻结；本文整体及完整执行、事务和部署接口仍 proposed。阶段验收见 [阶段验收](../reviews/2026-10-01-phase0-acceptance.md)。

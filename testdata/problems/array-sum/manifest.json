@@ -1,0 +1,32 @@
+{
+  "checker": "tokens-v1",
+  "wall_time_ms": 2000,
+  "memory_limit_bytes": 67108864,
+  "cases": [
+    {
+      "id": "sample",
+      "input": "sample.in",
+      "expected": "sample.out"
+    },
+    {
+      "id": "single",
+      "input": "single.in",
+      "expected": "single.out"
+    },
+    {
+      "id": "negative",
+      "input": "negative.in",
+      "expected": "negative.out"
+    },
+    {
+      "id": "large",
+      "input": "large.in",
+      "expected": "large.out"
+    },
+    {
+      "id": "cancellation",
+      "input": "cancellation.in",
+      "expected": "cancellation.out"
+    }
+  ]
+}

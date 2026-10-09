@@ -38,3 +38,7 @@ Job 聚合内存直接取同一 Job cgroup 的实际占用/峰值，不能累加
 ## SourceBinding 与输出
 
 每个 ProcessSpec 显式引用 SourceUnitID 与 ArtifactID。所有必需角色编译完成、hash 和 binding 通过检查后才运行。失败结构保留 category、reason code、scope、role、observed、limit。用户视图不能泄露宿主路径、对象存储凭据、隐藏测试输入或无限量编译输出。
+
+## 契约范围
+
+[基础不变量](FOUNDATION_INVARIANTS.md) 只冻结快照、身份关系、资源单位和追溯等原则；本文业务 schema、完整字段与版本升级规则仍 proposed。

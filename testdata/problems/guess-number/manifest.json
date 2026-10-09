@@ -1,0 +1,12 @@
+{
+  "type": "interactive",
+  "checker": "interaction-v1",
+  "interactor": "guess-number-v1",
+  "wall_time_ms": 5000,
+  "memory_limit_bytes": 67108864,
+  "cases": [
+    { "id": "minimum", "input": "minimum.in" },
+    { "id": "middle", "input": "middle.in" },
+    { "id": "maximum", "input": "maximum.in" }
+  ]
+}

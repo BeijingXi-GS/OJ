@@ -1,0 +1,9 @@
+name: oj-compile-mvp
+services:
+  compiler:
+    image: oj/compile-worker:gcc14.2.0-mvp
+    ports:
+      - '127.0.0.1:8081:8081'
+    init: true
+    stop_grace_period: 20s
+    restart: unless-stopped

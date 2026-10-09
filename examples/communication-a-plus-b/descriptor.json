@@ -1,0 +1,50 @@
+{
+  "title": "通信 A + B（教师示例）",
+  "summary": "发送端传递两个整数，接收端计算并输出它们的和。",
+  "difficulty": "入门·通信",
+  "description": "提交发送端和接收端两份 C++20 程序。发送端读取整数 a、b，通过标准输出把这两个整数传给接收端。接收端从自己的标准输入读取消息，计算 a+b 并输出答案。两份程序均需正常退出。",
+  "input_description": "只有发送端能直接读取原始输入：一行两个整数 a、b，范围均为 −10¹² ≤ a, b ≤ 10¹²。接收端只能读取发送端传来的消息。",
+  "output_description": "发送端传递 a 和 b，用一个空格分隔并在末尾换行。接收端输出一个整数，表示 a+b。每例发送端传递的消息总量不能超过 32 字节，空格、负号和换行都计入。",
+  "notes": "发送端负责传递原始两个数，接收端负责求和。使用 long long 保存输入和答案。发送端完成输出后正常退出，接收端读取两个数即可计算。",
+  "engineering_notes": "固定单向图 sender stdout → receiver stdin；communication-v1 对接收端答案按空白 token 比较。每例两角色共享 5000 ms 墙钟预算，各自限制为 64 MiB 内存。此包仅用于本机教学演示；源码的任务分工属于题目要求，判题器不会静态检查是否在指定角色完成了加法。",
+  "samples": [
+    {
+      "input": "1 2\n",
+      "output": "3\n"
+    }
+  ],
+  "starter_code": "#include <iostream>\n\nint main() {\n    long long a, b;\n    if (!(std::cin >> a >> b)) return 1;\n    std::cout << a << ' ' << b << '\\n';\n}\n",
+  "starter_codes": {
+    "sender": "#include <iostream>\n\nint main() {\n    long long a, b;\n    if (!(std::cin >> a >> b)) return 1;\n    std::cout << a << ' ' << b << '\\n';\n}\n",
+    "receiver": "#include <iostream>\n\nint main() {\n    long long a, b;\n    if (!(std::cin >> a >> b)) return 1;\n    std::cout << a + b << '\\n';\n}\n"
+  },
+  "type": "communication",
+  "checker": "communication-v1",
+  "wall_time_ms": 5000,
+  "memory_limit_bytes": 67108864,
+  "communication": {
+    "byte_limit": 32
+  },
+  "cases": [
+    {
+      "id": "normal",
+      "input": "normal.in",
+      "expected": "normal.out"
+    },
+    {
+      "id": "zero",
+      "input": "zero.in",
+      "expected": "zero.out"
+    },
+    {
+      "id": "negative",
+      "input": "negative.in",
+      "expected": "negative.out"
+    },
+    {
+      "id": "large",
+      "input": "large.in",
+      "expected": "large.out"
+    }
+  ]
+}

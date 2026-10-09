@@ -11,7 +11,10 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
+	"oj.local/oj/internal/compilation"
+	"oj.local/oj/internal/filejudge"
 	"oj.local/oj/internal/httpapi"
+	"oj.local/oj/internal/problemstore"
 )
 
 func main() {
@@ -32,10 +35,33 @@ func main() {
 	if addr == "" {
 		addr = "127.0.0.1:8080"
 	}
-	server := &http.Server{Addr: addr, Handler: httpapi.New(ping), ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 10 * time.Second, WriteTimeout: 10 * time.Second, IdleTimeout: 60 * time.Second}
+	compilerURL := os.Getenv("COMPILER_URL")
+	if compilerURL == "" {
+		compilerURL = "http://127.0.0.1:8081"
+	}
+	compiler, err := compilation.NewClient(compilerURL)
+	if err != nil {
+		log.Error("invalid compiler configuration")
+		os.Exit(1)
+	}
+	var judge filejudge.Judge
+	if judgeURL := os.Getenv("JUDGE_URL"); judgeURL != "" {
+		client, clientErr := filejudge.NewClient(judgeURL)
+		if clientErr != nil {
+			log.Error("invalid judge configuration")
+			os.Exit(1)
+		}
+		judge = client
+	}
+	uploadRoot := os.Getenv("PROBLEM_UPLOAD_ROOT")
+	if uploadRoot == "" {
+		uploadRoot = ".local/teacher-problems"
+	}
+	catalog := &problemstore.Store{BuiltinRoot: "testdata/problems", UploadRoot: uploadRoot}
+	server := &http.Server{Addr: addr, Handler: httpapi.NewWithCatalog(ping, compiler, judge, catalog), ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 10 * time.Second, WriteTimeout: 120 * time.Second, IdleTimeout: 60 * time.Second}
 	failures := make(chan error, 1)
 	go func() {
-		log.Info("api listening", "addr", addr, "judge_enabled", false)
+		log.Info("api listening", "addr", addr, "judge_enabled", judge != nil, "compile_enabled", true)
 		failures <- server.ListenAndServe()
 	}()
 	select {
@@ -45,7 +71,7 @@ func main() {
 			os.Exit(1)
 		}
 	case <-ctx.Done():
-		shutdown, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		shutdown, cancel := context.WithTimeout(context.Background(), 120*time.Second)
 		defer cancel()
 		if err := server.Shutdown(shutdown); err != nil {
 			log.Error("shutdown failed", "error", err)

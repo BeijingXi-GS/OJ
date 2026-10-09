@@ -1,0 +1,31 @@
+{
+  "type": "communication",
+  "checker": "communication-v1",
+  "wall_time_ms": 5000,
+  "memory_limit_bytes": 67108864,
+  "communication": {
+    "byte_limit": 32
+  },
+  "cases": [
+    {
+      "id": "normal",
+      "input": "normal.in",
+      "expected": "normal.out"
+    },
+    {
+      "id": "zero",
+      "input": "zero.in",
+      "expected": "zero.out"
+    },
+    {
+      "id": "negative",
+      "input": "negative.in",
+      "expected": "negative.out"
+    },
+    {
+      "id": "large",
+      "input": "large.in",
+      "expected": "large.out"
+    }
+  ]
+}

@@ -27,4 +27,7 @@ if (!process.env.npm_execpath) {
 }
 run(process.execPath, [process.env.npm_execpath, 'ci'])
 run('go', ['mod', 'download'], { env: goEnv() })
-console.log('Dependencies ready. Run npm run doctor, then npm run infra:up.')
+console.log(
+  'Dependencies ready. Run npm run doctor, npm run infra:build-minio, ' +
+    'npm run infra:up, then node scripts/infra-smoke.mjs.',
+)

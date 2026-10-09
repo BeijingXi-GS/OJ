@@ -51,3 +51,7 @@ Pending reclaim 阈值、heartbeat 间隔、重试上限、死信处理、取消
 | 显式取消                                | CONTROL / CANCELLED                            | 完成图清理并在竞争条件中只接受一份终态        |
 
 结果事务提交 → ACK。ACK 前崩溃：重投读到终态并 ACK；提交前崩溃：新 attempt 恢复。数据库事务/Outbox/Fencing 将在真实 Queue 阶段注入故障验证。
+
+## 基础原则采用
+
+仅 [基础不变量](../architecture/FOUNDATION_INVARIANTS.md) 的终态 / verdict 分离等原则已冻结；本文完整状态组合、取消竞争、恢复和 fence 算法仍 proposed，helper 不获得额外能力。
